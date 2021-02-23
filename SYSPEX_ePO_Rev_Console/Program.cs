@@ -261,6 +261,7 @@ namespace SYSPEX_ePO_Rev_Console
         }
         private static string ST_HTMLBULIDER(string DocNum, string Revision)
         {
+
             //Create a new StringBuilder object
             StringBuilder sb = new StringBuilder();
 
@@ -270,13 +271,17 @@ namespace SYSPEX_ePO_Rev_Console
             sb.AppendLine("<ol>");
             sb.AppendLine("<li>To confirm the quantity and the delivery date within the next 24 hours <strong>(reply to all by using this e-mail</strong>)</li>");
             sb.AppendLine("<li>To indicate Syspex PO number for both Invoice and DO</li>");
-            sb.AppendLine("<li>To take note our receiving hours (Monday to Fridays 10:00am &ndash; 12:00 &amp; 1:00pm &ndash; 4:00pm) <strong>- Only applicable to supplier(s) deliver at Syspex Warehouse</strong></li>");
-            sb.AppendLine("<li> The pallet must be able to truck by hand pallet truck</li>");
+            sb.AppendLine("<li> To take note our receiving hours (Monday to Fridays 10:00am &ndash; 12:00 &amp; 1:00pm &ndash; 4:00pm) <strong>- Only applicable to supplier(s) deliver at Syspex Warehouse</strong></li>");
+            sb.AppendLine("<li> Please take note and comply that total height of incoming palletised goods should not exceed 1.5m. </ li>");
+            sb.AppendLine("<li> The pallet must be able to truck by hand pallet truck </li>");
+            sb.AppendLine("<li>***Do not reply to <u>noreply@syspex.com</u> as this is a unmanned mail box ***</li>");
             sb.AppendLine("</ol>");
+            sb.AppendLine("<p>Thank you for your co-operation.</p>");
             sb.AppendLine("<p>Best Regards,</p>");
             sb.AppendLine("<p>Syspex Procurement Team</p>");
-
             return sb.ToString();
+
+
         }
     }
 }
