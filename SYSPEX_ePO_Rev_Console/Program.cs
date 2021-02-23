@@ -270,9 +270,9 @@ namespace SYSPEX_ePO_Rev_Console
             sb.AppendLine("<ol>");
             sb.AppendLine("<li>To confirm the quantity and the delivery date within the next 24 hours <strong>(reply to all by using this e-mail</strong>)</li>");
             sb.AppendLine("<li>To indicate Syspex PO number for both Invoice and DO</li>");
-            sb.AppendLine("<li>To take note our receiving hours (Monday to Fridays 8:00am &ndash; 12:00 &amp; 1:00pm &ndash; 4:00pm) <strong>- Only applicable to supplier(s) deliver at Syspex Warehouse</strong></li>");
+            sb.AppendLine("<li>To take note our receiving hours (Monday to Fridays 10:00am &ndash; 12:00 &amp; 1:00pm &ndash; 4:00pm) <strong>- Only applicable to supplier(s) deliver at Syspex Warehouse</strong></li>");
+            sb.AppendLine("<li> The pallet must be able to truck by hand pallet truck</li>");
             sb.AppendLine("</ol>");
-            sb.AppendLine("<p style=\"color:black; background:yellow\">Please take note: We will be closed from 11 Feb to 15 Feb 2021 for CNY, our last receiving will be on 9 Feb 2021 (8:00am – 12:00 & 1:00pm – 4:00pm)</p>"); sb.AppendLine("<p>Thank you for your co-operation.</p>");
             sb.AppendLine("<p>Best Regards,</p>");
             sb.AppendLine("<p>Syspex Procurement Team</p>");
 
