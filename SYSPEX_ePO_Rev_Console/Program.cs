@@ -223,16 +223,24 @@ namespace SYSPEX_ePO_Rev_Console
                     Host = "smtp.gmail.com",
                     EnableSsl = true
                 };
-                System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential
+                if (CompanyCode == "65ST")
                 {
-                    UserName = "sg.procurment@syspex.com",
-                    Password = "enhance5"
-                };
-                smtp.UseDefaultCredentials = true;
-                smtp.Credentials = NetworkCred;
-                smtp.Port = 587;
-                mm.Attachments.Add(new System.Net.Mail.Attachment(CrDiskFileDestinationOptions.DiskFileName));
-                smtp.Send(mm);
+                    System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential("sg.procurement@syspex.com", "enhance5");
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    mm.Attachments.Add(new System.Net.Mail.Attachment(CrDiskFileDestinationOptions.DiskFileName));
+                    smtp.Send(mm);
+                }
+                else
+                {
+                    System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential("noreply@syspex.com", "design35");
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    mm.Attachments.Add(new System.Net.Mail.Attachment(CrDiskFileDestinationOptions.DiskFileName));
+                    smtp.Send(mm);
+                }
                 success = true;
 
 
