@@ -29,6 +29,8 @@ namespace SYSPEX_ePO_Rev_Console
             EPO_REVISON("04SI"); // go live 25/09/20
             System.Threading.Thread.Sleep(6000);
             EPO_REVISON("03SM"); // go live 23/09/20
+            System.Threading.Thread.Sleep(6000);
+
         }
 
         private static void EPO_REVISON(string companyCode)
@@ -234,7 +236,7 @@ namespace SYSPEX_ePO_Rev_Console
                 }
                 else
                 {
-                    System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential("noreply@syspex.com", "design35");
+                    System.Net.NetworkCredential NetworkCred = new System.Net.NetworkCredential("noreply@syspex.com", "design360");
                     smtp.UseDefaultCredentials = true;
                     smtp.Credentials = NetworkCred;
                     smtp.Port = 587;
@@ -253,7 +255,6 @@ namespace SYSPEX_ePO_Rev_Console
 
             return success;
         }
-
         private static bool IsValidEmail(string email)
         {
             try
@@ -278,10 +279,13 @@ namespace SYSPEX_ePO_Rev_Console
             sb.AppendLine("<p>Reply back this email to confirm on the order quantity and the delivery date stated on the PO within the next 24 hours</p>");
             sb.AppendLine("<p>Kindly take note and comply with the following packaging and delivery information, </p>");
             sb.AppendLine("<ol>");
-            sb.AppendLine("<li>To indicate Syspex PO number for both Invoice and DO</li>");
-            sb.AppendLine("<li> To take note our receiving hours (Monday to Fridays 10:00am &ndash; 12:00 &amp; 1:00pm &ndash; 4:00pm) <strong>- Only applicable to supplier(s) deliver at Syspex Warehouse</strong></li>");
-            sb.AppendLine("<li> Please take note and comply that total height of incoming palletised goods should not exceed 1.5m. </ li>");
-            sb.AppendLine("<li> The pallet must be able to truck by hand pallet truck </li>");
+            sb.AppendLine("<li>To indicate Syspex PO number for both Invoice and DO.</li>");
+            sb.AppendLine("<li>To indicate serial number on each outer packaging (When applicable).</li>");
+            sb.AppendLine("<li> To take note our receiving hours (Monday to Fridays 10:00am &ndash; 12:00 &amp; 1:00pm &ndash; 4:00pm).<strong>- Only applicable to supplier(s) deliver at Syspex Warehouse</strong></li>");
+            sb.AppendLine("<li> Please take note and comply that total height of incoming palletised goods should not exceed 1.5m.</ li>");
+            sb.AppendLine("<li> The pallet must be able to truck by hand pallet truck.</li>");
+            sb.AppendLine("<li> Please email us soft copy of invoice and packing list once shipment ready for dispatch.</li>");
+            sb.AppendLine("<li> For multiple package shipment, please indicate content list on outside of each package.</li>");
             sb.AppendLine("</ol>");
             sb.AppendLine("<p>Thank you for your co-operation.</p>");
             sb.AppendLine("<p>Best Regards,</p>");
