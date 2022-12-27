@@ -17,19 +17,18 @@ namespace SYSPEX_ePO_Rev_Console
         #region ***** SQL Connection*****
         static readonly SqlConnection SGConnection = new SqlConnection("Server=192.168.1.21;Database=SYSPEX_LIVE;Uid=Sa;Pwd=Password1111;");
         static readonly SqlConnection JBConnection = new SqlConnection("Server=192.168.1.21;Database=Syspex Technologies (M) Sdn Bhd;Uid=Sa;Pwd=Password1111;");
+        static readonly SqlConnection JKConnection = new SqlConnection("Server=192.168.1.21;Database=PT SYSPEX KEMASINDO;Uid=Sa;Pwd=Password1111;");
+        static readonly SqlConnection SBConnection = new SqlConnection("Server=192.168.1.21;Database=PT SYSPEX MULTITECH;Uid=Sa;Pwd=Password1111;");
+        static readonly SqlConnection KLConnection = new SqlConnection("Server=192.168.1.21;Database=Syspex Mechatronic (M) Sdn Bhd;Uid=Sa;Pwd=Password1111;");
+        static readonly SqlConnection PGConnection = new SqlConnection("Server=192.168.1.21;Database=Syspex Industries (M) Sdn Bhd;Uid=Sa;Pwd=Password1111;");
         static SqlConnection SAPCon12 = new SqlConnection("Server=192.168.1.21;Database=AndriodAppDB;Uid=Sa;Pwd=Password1111;");
         static string SQLQuery;
         #endregion
         static void Main(string[] args)
         {
             EPO_REVISON("65ST");
-            System.Threading.Thread.Sleep(6000);
+            // System.Threading.Thread.Sleep(6000);
             EPO_REVISON("07ST"); // go live 23/09/20
-            System.Threading.Thread.Sleep(6000);
-            EPO_REVISON("04SI"); // go live 25/09/20
-            System.Threading.Thread.Sleep(6000);
-            EPO_REVISON("03SM"); // go live 23/09/20
-            System.Threading.Thread.Sleep(6000);
 
         }
 
@@ -75,7 +74,7 @@ namespace SYSPEX_ePO_Rev_Console
             SQLQuery = "Get_ePO_Revison";
 
             if (companyCode == "03SM")
-                SQLConnection = JBConnection;
+                SQLConnection = KLConnection;
             SQLQuery = "Get_ePO_Revison";
 
             if (companyCode == "04SI")
@@ -206,18 +205,17 @@ namespace SYSPEX_ePO_Rev_Console
                 mm.IsBodyHtml = true;
                 mm.Subject = "Amended PO#" + DocNum + " " + Revision + "_" + VendorName;
 
-                if (CompanyCode != "65ST")
-                {
-                    //mm.Subject = " Purchase Order No:" + DocNum;
-                    mm.Body = "<p>Dear Valued Supplier,</p> <p>Attached please find our <u>PO# " + DocNum + "(" + Revision + ")</u>, if you have any questions please call us immediately.</p>" +
-                        "<p> Regards,</p>" +
-          "<p> Procurement Team</p> ";
-
-
-                }
-                else
+                if (CompanyCode == "65ST")
                 {
                     mm.Body = ST_HTMLBULIDER(DocNum, Revision);
+
+                }
+
+                if (CompanyCode == "07ST")
+                {
+                    mm.Body = JB_HTMLBuilder(DocNum, Revision);
+
+
                 }
 
                 SmtpClient smtp = new SmtpClient
@@ -293,6 +291,32 @@ namespace SYSPEX_ePO_Rev_Console
             return sb.ToString();
 
 
+        }
+        private static string JB_HTMLBuilder(string DocNum, string Revision)
+        {
+            //Create a new StringBuilder object
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("<p>Dear Supplier,</p>");
+            sb.AppendLine("<p>Please find <strong><u>PO# " + DocNum + "(" + Revision + ")</u></strong> and file attachments.</p>");
+            sb.AppendLine("<p><strong><u>Please acknowledge this email</u></strong> to <strong><u>confirm on the</u></strong><u> <strong>order quantity and the delivery date</strong></u> stated on the PO <strong><u>within the next 24 hours</u></strong></p>");
+            sb.AppendLine("<p>Kindly take note and comply with the following packaging and delivery information,</p>");
+            sb.AppendLine("<ol start=\"1\">");
+            sb.AppendLine("<li>To indicate Syspex PO number for both Invoice and DO.</li>");
+            sb.AppendLine("<li>To indicate item description &amp; serial number on each outer packaging (When applicable).</li>");
+            sb.AppendLine("<li>To take note our receiving hours as below:</li>");
+            sb.AppendLine("</ol>");
+            sb.AppendLine("<p>Monday to Thursday: 8:00am &ndash; 12:30pm &amp; 1:30pm &ndash; 5:00pm</p>");
+            sb.AppendLine("<p>Friday: 8.00am &ndash; 12:30pm &amp; 2:30pm &ndash; 5:00pm</p>");
+            sb.AppendLine("<p><strong>- Only applicable to supplier(s) deliver at Syspex Warehouse</strong></p>");
+            sb.AppendLine("<ol start=\"4\">");
+            sb.AppendLine("<li>The pallet must be able to truck by hand pallet truck.</li>");
+            sb.AppendLine("<li>Please email us soft copy of invoice and packing list once shipment ready for dispatch.</li>");
+            sb.AppendLine("<li>For multiple package shipment, please indicate item description on outside of each package.</li>");
+            sb.AppendLine("</ol>");
+            sb.AppendLine("<p>Thank you for your co-operation.</p>");
+            sb.AppendLine("<p>Best Regards,</p>");
+            sb.AppendLine("<p>Syspex Purchasing Team</p>");
+            return sb.ToString();
         }
     }
 }
