@@ -26,7 +26,7 @@ namespace SYSPEX_ePO_Rev_Console
         #endregion
         static void Main(string[] args)
         {
-            EPO_REVISON("65ST");
+          //  EPO_REVISON("65ST");
             // System.Threading.Thread.Sleep(6000);
             EPO_REVISON("07ST"); // go live 23/09/20
 
